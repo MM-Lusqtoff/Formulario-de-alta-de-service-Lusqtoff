@@ -4,60 +4,146 @@
   --border: #D0DBE8; --success: #27AE60; --white: #ffffff;
   --card: #ffffff; --input-bg: #F8FAFD;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'DM Sans', sans-serif; background: var(--navy);
-  min-height: 100vh; color: var(--navy); overflow-x: hidden;
+
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
 }
-.page-wrapper { max-width: 780px; margin: 0 auto; padding: 40px 20px; }
-.header { text-align: center; margin-bottom: 40px; }
-.header h1 { font-family: 'Bebas Neue', cursive; font-size: 50px; color: var(--white); }
+
+body {
+  font-family: 'DM Sans', sans-serif; 
+  background: var(--navy);
+  min-height: 100vh; 
+  color: var(--navy); 
+  /* Evitar scroll horizontal en mobile */
+  overflow-x: hidden; 
+}
+
+.page-wrapper { 
+  width: 100%;
+  max-width: 780px; 
+  margin: 0 auto; 
+  padding: 20px 15px; 
+}
+
+/* Encabezado */
+.header { text-align: center; margin-bottom: 30px; }
+.logo-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 50px; margin-bottom: 20px; }
+.logo-dot { background: var(--accent); width: 25px; height: 25px; border-radius: 50%; font-family: 'Bebas Neue', sans-serif; font-size: 14px; display: flex; align-items: center; justify-content: center;}
+.logo-text { color: white; font-size: 12px; font-weight: bold; text-transform: uppercase;}
+.header h1 { font-family: 'Bebas Neue', cursive; font-size: 40px; color: var(--white); line-height: 1; margin-bottom: 10px;}
 .header h1 span { color: var(--accent); }
-.header p { color: rgba(255,255,255,0.6); }
+.header p { color: rgba(255,255,255,0.6); font-size: 14px; }
 
 /* Progreso */
-.progress-wrap { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 15px; display: flex; gap: 10px; margin-bottom: 30px; }
+.progress-wrap { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 15px; display: flex; align-items: center; gap: 10px; margin-bottom: 25px; }
+.progress-steps { display: flex; gap: 5px; flex: 1; }
 .progress-step { flex: 1; height: 5px; background: rgba(255,255,255,0.2); border-radius: 5px; }
 .progress-step.active { background: var(--accent2); }
 .progress-step.done { background: var(--accent); }
+.progress-label { color: white; font-size: 12px; }
 
-/* Tarjetas */
-.card { background: var(--card); border-radius: 15px; display: none; overflow: hidden; }
-.card.visible { display: block; animation: fadeUp 0.5s ease; }
-.card-header { background: var(--blue); padding: 20px; color: white; display: flex; gap: 15px; align-items: center; }
-.card-body { padding: 30px; }
+/* Tarjetas (Cards) */
+.card { background: var(--card); border-radius: 15px; display: none; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.card.visible { display: block; animation: fadeUp 0.4s ease; }
+.card-header { background: var(--blue); padding: 20px 15px; color: white; display: flex; gap: 15px; align-items: center; }
+.card-body { padding: 20px 15px; }
+.step-icon { font-size: 24px; background: var(--accent); border-radius: 10px; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;}
+.card-header-text h2 { font-size: 20px; font-family: 'Bebas Neue', cursive; letter-spacing: 1px; }
+.card-header-text p { font-size: 12px; color: rgba(255,255,255,0.7); }
 
-/* Formularios */
-.form-grid { display: grid; gap: 15px; }
-.form-grid-2 { grid-template-columns: 1fr 1fr; }
-.field { display: flex; flex-direction: column; gap: 5px; }
-label { font-size: 13px; font-weight: bold; color: var(--navy); }
+/* --- ESTRUCTURA FLEXBOX (Mobile First) --- */
+.flex-col { display: flex; flex-direction: column; gap: 20px; }
+.flex-row { display: flex; flex-direction: column; gap: 20px; } /* En celular se apilan, en PC van en fila */
+.field { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+
+label { font-size: 14px; font-weight: 600; color: var(--navy); }
 label .req { color: var(--accent); }
-input, select, textarea { padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; }
+input, select, textarea { 
+  width: 100%; 
+  padding: 14px 12px; 
+  border: 1.5px solid var(--border); 
+  border-radius: 8px; 
+  font-family: inherit;
+  font-size: 16px; /* 16px evita que los iPhone hagan zoom al tocar el input */
+  background: var(--input-bg);
+}
+textarea { min-height: 100px; resize: vertical; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent2); background: white;}
 input.error, select.error { border-color: red; background: #fff0f0; }
 .error-msg { font-size: 12px; color: red; display: none; }
 .error-msg.show { display: block; }
+.divider { height: 1px; background: var(--border); margin: 5px 0; }
+.section-label { font-size: 12px; font-weight: bold; color: var(--accent2); text-transform: uppercase; border-bottom: 1px solid var(--border); padding-bottom: 5px;}
 
-/* Botones Radio Service */
-.service-type-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.service-type-card { border: 2px solid var(--border); border-radius: 10px; padding: 15px; cursor: pointer; position: relative; }
+/* Tarjetas de Selección de Service (Radio Buttons) */
+.service-type-group { display: flex; flex-direction: column; gap: 15px; }
+.service-type-card { border: 2px solid var(--border); border-radius: 10px; padding: 15px; cursor: pointer; position: relative; display: flex; flex-direction: column; gap: 5px;}
 .service-type-card input { display: none; }
 .service-type-card.selected-abierto { border-color: var(--accent2); background: #EEF6FF; }
 .service-type-card.selected-cerrado { border-color: var(--accent); background: #FFF8EC; }
+.service-type-icon { font-size: 24px; }
+.service-type-title { font-weight: bold; font-size: 16px; }
+.service-type-desc { font-size: 13px; color: var(--muted); }
+.service-type-check { position: absolute; top: 15px; right: 15px; font-weight: bold; }
 
-/* Checkboxes */
-.checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.check-item { display: flex; gap: 10px; border: 1px solid var(--border); padding: 10px; border-radius: 8px; }
+/* Categorías (Checkboxes) */
+.checkbox-group { display: flex; flex-direction: column; gap: 10px; }
+.check-item { display: flex; align-items: center; gap: 10px; border: 1.5px solid var(--border); padding: 14px; border-radius: 8px; font-size: 15px; cursor: pointer;}
+.check-item input[type="checkbox"] { width: 18px; height: 18px; flex-shrink: 0; }
 
-/* Botones Nav */
-.nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 20px; }
-.btn { padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
-.btn-primary { background: var(--navy); color: white; flex: 1; }
-.btn-secondary { border: 1px solid var(--border); background: transparent; }
-.btn-submit { background: var(--accent); color: var(--navy); flex: 1; font-size: 16px; }
+/* Navegación de Botones (Mobile) */
+.nav { 
+  display: flex; 
+  flex-direction: column; /* Apila botones: Siguiente arriba, Volver abajo */
+  gap: 12px; 
+  margin-top: 25px; 
+}
+.btn { 
+  width: 100%; 
+  padding: 16px; 
+  border: none; 
+  border-radius: 8px; 
+  font-size: 16px; 
+  font-weight: bold; 
+  cursor: pointer; 
+  text-align: center;
+}
+.btn-primary { background: var(--navy); color: white; }
+.btn-secondary { background: transparent; border: 1.5px solid var(--border); color: var(--navy); }
+.btn-submit { background: var(--accent); color: var(--navy); font-size: 18px; }
 
 /* Pantalla final */
-.success-screen { display: none; text-align: center; color: white; }
-.success-screen.visible { display: block; }
-.summary-card { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin-top: 20px; text-align: left; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.success-screen { display: none; text-align: center; color: white; padding: 40px 10px; }
+.success-screen.visible { display: block; animation: fadeUp 0.5s ease; }
+.success-circle { background: var(--success); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; margin: 0 auto 20px;}
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ========================================================
+   MEDIA QUERIES (ADAPTACIÓN PARA TABLET Y ESCRITORIO)
+   ======================================================== */
+@media (min-width: 768px) {
+  .page-wrapper { padding: 40px 20px; }
+  .header h1 { font-size: 55px; }
+  .card-header { padding: 25px 30px; }
+  .card-body { padding: 35px 30px; }
+  
+  /* Los contenedores en fila ahora sí se ponen uno al lado del otro */
+  .flex-row { flex-direction: row; }
+  
+  /* Las opciones de Service van lado a lado */
+  .service-type-group { flex-direction: row; }
+  .service-type-card { flex: 1; }
+  
+  /* Las casillas de categoría arman una grilla flexible */
+  .checkbox-group { flex-direction: row; flex-wrap: wrap; }
+  .check-item { flex: 1 1 calc(50% - 15px); } /* Toma la mitad del ancho menos el espacio (gap) */
+  
+  /* Los botones vuelven a estar uno al lado del otro (Volver a la Izq, Siguiente a la Der) */
+  .nav { flex-direction: row; justify-content: space-between; align-items: center; }
+  .nav .btn { width: auto; padding: 14px 28px; }
+  /* Invertimos el orden visual en Desktop para que Volver quede a la izquierda */
+  .nav .btn-secondary { order: -1; }
+}
