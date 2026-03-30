@@ -1,0 +1,63 @@
+:root {
+  --navy: #0D1B2A; --blue: #1A4B8C; --accent: #E8A020;
+  --accent2: #2E90D4; --light: #F4F7FB; --muted: #8A9BB0;
+  --border: #D0DBE8; --success: #27AE60; --white: #ffffff;
+  --card: #ffffff; --input-bg: #F8FAFD;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', sans-serif; background: var(--navy);
+  min-height: 100vh; color: var(--navy); overflow-x: hidden;
+}
+.page-wrapper { max-width: 780px; margin: 0 auto; padding: 40px 20px; }
+.header { text-align: center; margin-bottom: 40px; }
+.header h1 { font-family: 'Bebas Neue', cursive; font-size: 50px; color: var(--white); }
+.header h1 span { color: var(--accent); }
+.header p { color: rgba(255,255,255,0.6); }
+
+/* Progreso */
+.progress-wrap { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 15px; display: flex; gap: 10px; margin-bottom: 30px; }
+.progress-step { flex: 1; height: 5px; background: rgba(255,255,255,0.2); border-radius: 5px; }
+.progress-step.active { background: var(--accent2); }
+.progress-step.done { background: var(--accent); }
+
+/* Tarjetas */
+.card { background: var(--card); border-radius: 15px; display: none; overflow: hidden; }
+.card.visible { display: block; animation: fadeUp 0.5s ease; }
+.card-header { background: var(--blue); padding: 20px; color: white; display: flex; gap: 15px; align-items: center; }
+.card-body { padding: 30px; }
+
+/* Formularios */
+.form-grid { display: grid; gap: 15px; }
+.form-grid-2 { grid-template-columns: 1fr 1fr; }
+.field { display: flex; flex-direction: column; gap: 5px; }
+label { font-size: 13px; font-weight: bold; color: var(--navy); }
+label .req { color: var(--accent); }
+input, select, textarea { padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; }
+input.error, select.error { border-color: red; background: #fff0f0; }
+.error-msg { font-size: 12px; color: red; display: none; }
+.error-msg.show { display: block; }
+
+/* Botones Radio Service */
+.service-type-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.service-type-card { border: 2px solid var(--border); border-radius: 10px; padding: 15px; cursor: pointer; position: relative; }
+.service-type-card input { display: none; }
+.service-type-card.selected-abierto { border-color: var(--accent2); background: #EEF6FF; }
+.service-type-card.selected-cerrado { border-color: var(--accent); background: #FFF8EC; }
+
+/* Checkboxes */
+.checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.check-item { display: flex; gap: 10px; border: 1px solid var(--border); padding: 10px; border-radius: 8px; }
+
+/* Botones Nav */
+.nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 20px; }
+.btn { padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+.btn-primary { background: var(--navy); color: white; flex: 1; }
+.btn-secondary { border: 1px solid var(--border); background: transparent; }
+.btn-submit { background: var(--accent); color: var(--navy); flex: 1; font-size: 16px; }
+
+/* Pantalla final */
+.success-screen { display: none; text-align: center; color: white; }
+.success-screen.visible { display: block; }
+.summary-card { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin-top: 20px; text-align: left; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
