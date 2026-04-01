@@ -12,7 +12,7 @@
 <div class="page-wrapper">
     <div class="header">
         <div class="logo-badge">
-            <div class="logo-dot">LQ</div>
+            <div class="logo-dot"><img src=lusqtoff-circle-logo alt=logo width= 29px height= 29px></div>
             <div class="logo-text">Red de Servicios Técnicos</div>
         </div>
         <h1>FORMULARIO DE<br><span>ALTA</span></h1>
@@ -38,7 +38,7 @@
         </div>
         <div class="card-body">
             <div class="flex-col">
-                
+
                 <div class="field">
                     <div class="section-label">Tipo de alta</div>
                     <div class="service-type-group">
@@ -46,8 +46,9 @@
                             <input type="radio" name="service-type" value="Service Abierto" onchange="selectServiceType('abierto')">
                             <div class="service-type-check" id="check-abierto"></div>
                             <div class="service-type-icon">🏪</div>
-                            <div class="service-type-title">Service Abierto</div>
+                            <div class="service-type-title">Service Oficial</div>
                             <div class="service-type-desc">Atiende al público general.</div>
+                            <button type="button" class="btn btn-submit" onclick="alert('❗SERVICE OFICIAL❗\nAtiende clientes externos al público general. Recibe equipos de cualquier comprador.\n\nBeneficios:\n. 25 % de descuentos en compras de repuestos.\n. Bonificación de repuestos utilizados.\n. Bonificación de mano de obra.\n. Bonificación de puesta en marcha.\n10% de Bonificación presentando en tiempo y forma.\n. Figurar en la web como servicio técnico oficial.')">Saber mas...</button>
                         </label>
                         <label class="service-type-card" id="card-cerrado">
                             <input type="radio" name="service-type" value="Service Cerrado" onchange="selectServiceType('cerrado')">
@@ -55,6 +56,7 @@
                             <div class="service-type-icon">🔒</div>
                             <div class="service-type-title">Service Cerrado</div>
                             <div class="service-type-desc">Atiende clientes vinculados.</div>
+                            <button type="button" class="btn btn-submit" onclick="alert('SERVICE CERRADO\nAtiende exclusivamente a clientes vinculados al service (Venta propia).\n\nBeneficios:\n. 25 % de descuentos en compras de repuestos.\n. Bonificación de repuestos utilizados.')">Saber mas...</button>
                         </label>
                     </div>
                     <span class="error-msg" id="err-service-type">⚠ Seleccioná el tipo de service</span>
@@ -74,7 +76,7 @@
                         <span class="error-msg" id="err-cumple">⚠ Ingresá tu fecha</span>
                     </div>
                 </div>
-                
+
                 <div class="flex-row">
                     <div class="field">
                         <label>Correo electrónico <span class="req">*</span></label>
@@ -82,7 +84,7 @@
                         <span class="error-msg" id="err-email">⚠ Email inválido</span>
                     </div>
                     <div class="field">
-                        <label>Teléfono <span class="req">*</span></label>
+                        <label>Teléfono de contacto<span class="req">*</span></label>
                         <input type="tel" id="telefono" placeholder="11 XXXX-XXXX">
                         <span class="error-msg" id="err-telefono">⚠ Requerido</span>
                     </div>
@@ -203,7 +205,7 @@
                     </div>
                     <span class="error-msg" id="err-categorias">⚠ Seleccioná al menos una</span>
                 </div>
-                
+
                 <div class="field">
                     <label>¿Acepta los terminos y condiciones?</label>
                     <textarea id="observaciones" placeholder="Información extra..."></textarea>

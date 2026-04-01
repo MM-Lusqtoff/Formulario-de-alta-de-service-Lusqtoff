@@ -1,30 +1,42 @@
+body {
+  background-image: url('fondo.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
 :root {
-  --navy: #0D1B2A; --blue: #1A4B8C; --accent: #E8A020;
+  --navy: #0D1B2A; --blue: #FF8300; --accent: #E8A020;
   --accent2: #2E90D4; --light: #F4F7FB; --muted: #8A9BB0;
   --border: #D0DBE8; --success: #27AE60; --white: #ffffff;
   --card: #ffffff; --input-bg: #F8FAFD;
 }
 
-* { 
-  box-sizing: border-box; 
-  margin: 0; 
-  padding: 0; 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  font-family: 'DM Sans', sans-serif; 
+  font-family: 'DM Sans', sans-serif;
   background: var(--navy);
-  min-height: 100vh; 
-  color: var(--navy); 
+  min-height: 100vh;
+  color: var(--navy);
   /* Evitar scroll horizontal en mobile */
-  overflow-x: hidden; 
+  overflow-x: hidden;
+  /* El fondo */
+  background-image: url('fondo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
 }
 
-.page-wrapper { 
+.page-wrapper {
   width: 100%;
-  max-width: 780px; 
-  margin: 0 auto; 
-  padding: 20px 15px; 
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 20px 15px;
 }
 
 /* Encabezado */
@@ -60,11 +72,11 @@ body {
 
 label { font-size: 14px; font-weight: 600; color: var(--navy); }
 label .req { color: var(--accent); }
-input, select, textarea { 
-  width: 100%; 
-  padding: 14px 12px; 
-  border: 1.5px solid var(--border); 
-  border-radius: 8px; 
+input, select, textarea {
+  width: 100%;
+  padding: 14px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
   font-family: inherit;
   font-size: 16px; /* 16px evita que los iPhone hagan zoom al tocar el input */
   background: var(--input-bg);
@@ -94,20 +106,20 @@ input.error, select.error { border-color: red; background: #fff0f0; }
 .check-item input[type="checkbox"] { width: 18px; height: 18px; flex-shrink: 0; }
 
 /* Navegación de Botones (Mobile) */
-.nav { 
-  display: flex; 
+.nav {
+  display: flex;
   flex-direction: column; /* Apila botones: Siguiente arriba, Volver abajo */
-  gap: 12px; 
-  margin-top: 25px; 
+  gap: 12px;
+  margin-top: 25px;
 }
-.btn { 
-  width: 100%; 
-  padding: 16px; 
-  border: none; 
-  border-radius: 8px; 
-  font-size: 16px; 
-  font-weight: bold; 
-  cursor: pointer; 
+.btn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
   text-align: center;
 }
 .btn-primary { background: var(--navy); color: white; }
@@ -129,18 +141,18 @@ input.error, select.error { border-color: red; background: #fff0f0; }
   .header h1 { font-size: 55px; }
   .card-header { padding: 25px 30px; }
   .card-body { padding: 35px 30px; }
-  
+
   /* Los contenedores en fila ahora sí se ponen uno al lado del otro */
   .flex-row { flex-direction: row; }
-  
+
   /* Las opciones de Service van lado a lado */
   .service-type-group { flex-direction: row; }
   .service-type-card { flex: 1; }
-  
+
   /* Las casillas de categoría arman una grilla flexible */
   .checkbox-group { flex-direction: row; flex-wrap: wrap; }
   .check-item { flex: 1 1 calc(50% - 15px); } /* Toma la mitad del ancho menos el espacio (gap) */
-  
+
   /* Los botones vuelven a estar uno al lado del otro (Volver a la Izq, Siguiente a la Der) */
   .nav { flex-direction: row; justify-content: space-between; align-items: center; }
   .nav .btn { width: auto; padding: 14px 28px; }
