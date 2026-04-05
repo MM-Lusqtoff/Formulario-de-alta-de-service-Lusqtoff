@@ -157,7 +157,7 @@ if (files.length > 0) {
             horarios: document.getElementById('horarios').value,
             categorias: categoriasSeleccionadas.join(', '),
             observaciones: document.getElementById('observaciones').value,
-            foto: imageUrl // 🔥 ahora es URL, no base64
+            foto: imageUrls // 🔥 ahora es URL, no base64
         };
 
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxDCcFNOEmtsLezzKIiAZXsfaa9rGKah3IbOTZBENW5apUxmj1bPZkG9WWySZ_kk0ulbQ/exec';
