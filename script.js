@@ -142,7 +142,7 @@ function submitForm() {
             nombreArchivo: fileName
         };
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxDCcFNOEmtsLezzKIiAZXsfaa9rGKah3IbOTZBENW5apUxmj1bPZkG9WWySZ_kk0ulbQ/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxvjIy-N75R7ZapjrFOGv3GIylYm2Eri3MCsX0Z5rPhNKlVOUmsoSGHatzjy2unoy0SnQ/exec';
 
         fetch(scriptURL, {
             method: 'POST',
