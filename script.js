@@ -149,9 +149,7 @@ function submitForm() {
             mode: 'no-cors', //SOLUCIONNN
             body: JSON.stringify(data)
         })
-        .then(res => res.json())
-   
-            console.log(response); // 👈 MIRÁ ESTO EN LA CONSOLA
+        .then(() => {
             
             document.getElementById('card-3').classList.remove('visible');
             document.getElementById('success').classList.add('visible');
