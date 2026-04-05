@@ -63,6 +63,18 @@ function validarPaso(paso) {
             esValido = false;
         }
 
+        // validar si es cliente
+        const esCliente = document.querySelector('input[name="esCliente"]:checked');
+
+        if (!esCliente) {
+            alert("Seleccioná si sos cliente");
+            esValido = false;
+        } else if (esCliente.value === "Si") {
+            const numero = document.getElementById('numeroCliente').value.trim();
+            setError('numeroCliente', numero === '');
+            if (numero === '') esValido = false;
+        }
+
         const campos = ['nombre', 'cumple', 'email', 'telefono', 'whatsapp'];
         campos.forEach(campo => {
             const valor = document.getElementById(campo).value.trim();
@@ -142,6 +154,8 @@ if (files.length > 0) {
         // 📦 Armar datos
         const data = {
             serviceType: document.querySelector('input[name="service-type"]:checked').value,
+            esCliente: document.querySelector('input[name="esCliente"]:checked')?.value || '',
+            numeroCliente: document.getElementById('numeroCliente').value,
             nombre: document.getElementById('nombre').value,
             cumple: document.getElementById('cumple').value,
             email: document.getElementById('email').value,
@@ -178,5 +192,20 @@ if (files.length > 0) {
         btn.innerText = '✓ Intentar de nuevo';
         btn.disabled = false;
         console.error(error);
+    }
+}
+
+// ==============================
+// 6. La funcion para lo del "sos cliente?"
+// ==============================
+
+function toggleCliente(esCliente) {
+    const campo = document.getElementById('campo-cliente');
+
+    if (esCliente) {
+        campo.style.display = 'block';
+    } else {
+        campo.style.display = 'none';
+        document.getElementById('numeroCliente').value = '';
     }
 }
