@@ -150,7 +150,6 @@ function submitForm() {
             body: JSON.stringify(data)
         })
         .then(res => res.json())
-        .then(response => {
    
             console.log(response); // 👈 MIRÁ ESTO EN LA CONSOLA
             
