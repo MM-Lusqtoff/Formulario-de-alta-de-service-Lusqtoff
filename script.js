@@ -146,8 +146,18 @@ function submitForm() {
 
         fetch(scriptURL, {
             method: 'POST',
-            mode: 'no-cors', //SOLUCIONNN
             body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(response => {
+
+            console.log(response); // 🔥 ACA VAMOS A VER EL ERROR
+
+        })
+        .catch(error => {
+            console.log("ERROR FETCH:", error);
+        });
+       
         })
         .then(() => {
             
