@@ -146,11 +146,11 @@ function submitForm() {
 
         fetch(scriptURL, {
             method: 'POST',
-            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
             body: JSON.stringify(data)
         })
-        .then(() => {
-            
+        .then(res => res.json())
+        .then(response => {
             document.getElementById('card-3').classList.remove('visible');
             document.getElementById('success').classList.add('visible');
             document.querySelector('.progress-wrap').style.display = 'none';
