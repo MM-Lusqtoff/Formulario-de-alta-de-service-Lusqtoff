@@ -162,3 +162,6 @@ function submitForm() {
         });
     }
 }
+
+.then(response => {
+    console.log(response); // 👈 MIRÁ ESTO EN LA CONSOLA
