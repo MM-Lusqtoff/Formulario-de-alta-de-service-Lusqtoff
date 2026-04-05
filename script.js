@@ -151,6 +151,9 @@ function submitForm() {
         })
         .then(res => res.json())
         .then(response => {
+   
+            console.log(response); // 👈 MIRÁ ESTO EN LA CONSOLA
+            
             document.getElementById('card-3').classList.remove('visible');
             document.getElementById('success').classList.add('visible');
             document.querySelector('.progress-wrap').style.display = 'none';
@@ -162,6 +165,3 @@ function submitForm() {
         });
     }
 }
-
-.then(response => {
-    console.log(response); // 👈 MIRÁ ESTO EN LA CONSOLA
