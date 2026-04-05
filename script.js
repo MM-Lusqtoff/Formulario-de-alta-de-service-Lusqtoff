@@ -118,13 +118,26 @@ async function submitForm() {
 
     try {
         // 📸 Obtener imagen
-        const file = document.getElementById('foto')?.files[0];
-        let imageUrl = "";
+        const files = document.getElementById('foto')?.files;
+let imageUrls = [];
 
-        if (file) {
-            btn.innerText = '📤 Subiendo imagen...';
-            imageUrl = await subirImagen(file);
-        }
+// 🔴 VALIDACIÓN (ACÁ VA)
+if (files.length > 3) {
+    alert("Podés subir máximo 3 imágenes");
+    btn.innerText = '✓ Enviar solicitud';
+    btn.disabled = false;
+    return;
+}
+
+// 🟢 SUBIDA
+if (files.length > 0) {
+    btn.innerText = '📤 Subiendo imágenes...';
+
+    for (let i = 0; i < files.length; i++) {
+        const url = await subirImagen(files[i]);
+        imageUrls.push(url);
+    }
+}
 
         // 📦 Armar datos
         const data = {
