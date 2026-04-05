@@ -146,7 +146,7 @@ function submitForm() {
 
         fetch(scriptURL, {
             method: 'POST',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            mode: 'no-cors', //SOLUCIONNN
             body: JSON.stringify(data)
         })
         .then(res => res.json())
