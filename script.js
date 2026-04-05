@@ -1,12 +1,12 @@
-// 1. Lógica para seleccionar el Tipo de Service (Corregida)
+// ==============================
+// 1. Selección de tipo de service
+// ==============================
 function selectServiceType(tipo) {
-    // Reseteamos estilos
     document.getElementById('card-abierto').classList.remove('selected-abierto');
     document.getElementById('card-cerrado').classList.remove('selected-cerrado');
     document.getElementById('check-abierto').innerText = '';
     document.getElementById('check-cerrado').innerText = '';
 
-    // Aplicamos estilo al seleccionado
     if(tipo === 'abierto') {
         document.getElementById('card-abierto').classList.add('selected-abierto');
         document.getElementById('check-abierto').innerText = '✓';
@@ -15,11 +15,12 @@ function selectServiceType(tipo) {
         document.getElementById('check-cerrado').innerText = '✓';
     }
 
-    // Ocultar error si existía
     document.getElementById('err-service-type').classList.remove('show');
 }
 
-// 2. Lógica para navegar entre los pasos
+// ==============================
+// 2. Navegación entre pasos
+// ==============================
 function goTo(pasoDestino) {
     let pasoActual = 1;
     if(document.getElementById('card-2').classList.contains('visible')) pasoActual = 2;
@@ -42,7 +43,9 @@ function goTo(pasoDestino) {
     if(pasoDestino > 1) document.getElementById('ps1').className = 'progress-step done';
 }
 
+// ==============================
 // 3. Validación
+// ==============================
 function setError(id, hayError) {
     const input = document.getElementById(id);
     const mensaje = document.getElementById('err-' + id);
@@ -80,8 +83,27 @@ function validarPaso(paso) {
     return esValido;
 }
 
-// 4. ENVÍO FINAL (ACTUALIZADO CON IMÁGENES)
-function submitForm() {
+// ==============================
+// 4. Subida de imagen a Cloudinary
+// ==============================
+async function subirImagen(file) {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "ml_default"); // ✅ tu preset
+
+    const res = await fetch("https://api.cloudinary.com/v1_1/ddyvr3ini/image/upload", {
+        method: "POST",
+        body: formData
+    });
+
+    const data = await res.json();
+    return data.secure_url; // 🔥 link final
+}
+
+// ==============================
+// 5. Envío final del formulario
+// ==============================
+async function submitForm() {
 
     const categoriasSeleccionadas = Array.from(document.querySelectorAll('#categorias input:checked')).map(cb => cb.value);
     if (categoriasSeleccionadas.length === 0) {
@@ -94,31 +116,17 @@ function submitForm() {
     btn.innerText = '⏳ Enviando datos...';
     btn.disabled = true;
 
-    // 🆕 NUEVO: obtenemos la imagen del input
-    const fileInput = document.getElementById('foto'); // ← IMPORTANTE: tiene que existir en el HTML
-    const file = fileInput ? fileInput.files[0] : null;
+    try {
+        // 📸 Obtener imagen
+        const file = document.getElementById('foto')?.files[0];
+        let imageUrl = "";
 
-    // 🆕 NUEVO: si hay imagen la convertimos a base64
-    if (file) {
-        const reader = new FileReader();
+        if (file) {
+            btn.innerText = '📤 Subiendo imagen...';
+            imageUrl = await subirImagen(file);
+        }
 
-        reader.onload = function(e) {
-            const base64 = e.target.result.split(',')[1];
-
-            // enviamos con imagen
-            enviarDatos(base64, file.name);
-        };
-
-        reader.readAsDataURL(file);
-
-    } else {
-        // enviamos sin imagen
-        enviarDatos(null, null);
-    }
-
-    // 🆕 NUEVA FUNCIÓN (NO EXISTÍA ANTES)
-    function enviarDatos(base64, fileName) {
-
+        // 📦 Armar datos
         const data = {
             serviceType: document.querySelector('input[name="service-type"]:checked').value,
             nombre: document.getElementById('nombre').value,
@@ -136,29 +144,26 @@ function submitForm() {
             horarios: document.getElementById('horarios').value,
             categorias: categoriasSeleccionadas.join(', '),
             observaciones: document.getElementById('observaciones').value,
-
-            // 🆕 NUEVO: datos de la imagen
-            foto: base64,
-            nombreArchivo: fileName
+            foto: imageUrl // 🔥 ahora es URL, no base64
         };
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxvjIy-N75R7ZapjrFOGv3GIylYm2Eri3MCsX0Z5rPhNKlVOUmsoSGHatzjy2unoy0SnQ/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxDCcFNOEmtsLezzKIiAZXsfaa9rGKah3IbOTZBENW5apUxmj1bPZkG9WWySZ_kk0ulbQ/exec';
 
-        fetch(scriptURL, {
+        await fetch(scriptURL, {
             method: 'POST',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            mode: 'no-cors', // 🔥 evita CORS
             body: JSON.stringify(data)
-        })
-        .then(res => res.json())
-        .then(response => {
-            document.getElementById('card-3').classList.remove('visible');
-            document.getElementById('success').classList.add('visible');
-            document.querySelector('.progress-wrap').style.display = 'none';
-        })
-        .catch(error => {
-            alert('Hubo un error de conexión.');
-            btn.innerText = '✓ Intentar de nuevo';
-            btn.disabled = false;
         });
+
+        // ✅ éxito
+        document.getElementById('card-3').classList.remove('visible');
+        document.getElementById('success').classList.add('visible');
+        document.querySelector('.progress-wrap').style.display = 'none';
+
+    } catch (error) {
+        alert('Error al enviar. Probá de nuevo.');
+        btn.innerText = '✓ Intentar de nuevo';
+        btn.disabled = false;
+        console.error(error);
     }
 }
