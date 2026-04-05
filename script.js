@@ -176,6 +176,8 @@ if (files.length > 0) {
 
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxDCcFNOEmtsLezzKIiAZXsfaa9rGKah3IbOTZBENW5apUxmj1bPZkG9WWySZ_kk0ulbQ/exec';
 
+         console.log(data);  // ❗❗❗❗
+
         await fetch(scriptURL, {
             method: 'POST',
             mode: 'no-cors', // 🔥 evita CORS
