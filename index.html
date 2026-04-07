@@ -45,15 +45,15 @@
                         <label class="service-type-card" id="card-abierto">
                             <input type="radio" name="service-type" value="Service Abierto" onchange="selectServiceType('abierto')">
                             <div class="service-type-check" id="check-abierto"></div>
-                            <div class="service-type-icon">🏪</div>
+                            <div class="service-type-icon"></div>
                             <div class="service-type-title">Service Oficial</div>
                             <div class="service-type-desc">Atiende al público general.</div>
-                            <button type="button" class="btn btn-submit" onclick="alert('❗SERVICE OFICIAL❗\nAtiende clientes propios y al público general.\n\nBeneficios:\n. 25 % de descuentos en compras de repuestos.\n. Bonificación de repuestos utilizados.\n. Bonificación de mano de obra.\n. Bonificación de puesta en marcha.\n10% de Bonificación presentando en tiempo y forma.\n. Figurar en la web como servicio técnico oficial.')">Saber mas...</button>
+                            <button type="button" class="btn btn-submit" onclick="alert('SERVICE OFICIAL\nAtiende clientes propios y al público general.\n\nBeneficios:\n. 25 % de descuentos en compras de repuestos.\n. Bonificación de repuestos utilizados.\n. Bonificación de mano de obra.\n. Bonificación de puesta en marcha.\n10% de Bonificación presentando en tiempo y forma.\n. Figurar en la web como servicio técnico oficial.')">Saber mas...</button>
                         </label>
                         <label class="service-type-card" id="card-cerrado">
                             <input type="radio" name="service-type" value="Service Cerrado" onchange="selectServiceType('cerrado')">
                             <div class="service-type-check" id="check-cerrado"></div>
-                            <div class="service-type-icon">🔒</div>
+                            <div class="service-type-icon"></div>
                             <div class="service-type-title">Service Cerrado</div>
                             <div class="service-type-desc">Atiende clientes vinculados.</div>
                             <button type="button" class="btn btn-submit" onclick="alert('SERVICE CERRADO\nAtiende exclusivamente a clientes propios.\n\nBeneficios:\n. 25 % de descuentos en compras de repuestos.\n. Bonificación de repuestos utilizados.')">Saber mas...</button>
@@ -127,7 +127,7 @@
 
     <div class="card" id="card-2">
         <div class="card-header">
-            <div class="step-icon">🏪</div>
+            <div class="step-icon"></div>
             <div class="card-header-text">
                 <h2>Datos del Local</h2>
                 <p>Información del establecimiento</p>
@@ -208,7 +208,7 @@
 
     <div class="card" id="card-3">
         <div class="card-header">
-            <div class="step-icon">🔧</div>
+            <div class="step-icon"></div>
             <div class="card-header-text">
                 <h2>Especialización</h2>
                 <p>Categorías que reparan</p>
@@ -219,11 +219,11 @@
                 <div class="field">
                     <div class="section-label">Categorías (Seleccioná al menos una)</div>
                     <div class="checkbox-group" id="categorias">
-                        <label class="check-item"><input type="checkbox" value="Explosión"> <span>💥 Explosión</span></label>
-                        <label class="check-item"><input type="checkbox" value="Eléctricos"> <span>⚡ Eléctricos</span></label>
-                        <label class="check-item"><input type="checkbox" value="Soldadoras"> <span>🔥 Soldadoras</span></label>
-                        <label class="check-item"><input type="checkbox" value="Hidráulicos"> <span>💧 Hidráulicos</span></label>
-						<label class="check-item"><input type="checkbox" value="Hidráulicos"> <span>🛠 Eléctricos de mano </span></label>
+                        <label class="check-item"><input type="checkbox" value="Explosión"> <span> Explosión</span></label>
+                        <label class="check-item"><input type="checkbox" value="Eléctricos"> <span> Eléctricos</span></label>
+                        <label class="check-item"><input type="checkbox" value="Soldadoras"> <span> Soldadoras</span></label>
+                        <label class="check-item"><input type="checkbox" value="Hidráulicos"> <span> Hidráulicos</span></label>
+						<label class="check-item"><input type="checkbox" value="Hidráulicos"> <span> Eléctricos de mano </span></label>
                     </div>
                     <span class="error-msg" id="err-categorias">⚠ Seleccioná al menos una</span>
                 </div>
@@ -236,7 +236,7 @@
 
             <div class="field">
                    <br>
-                  <label>Subir una foto del local y una foto del taller (❗solo se puede subir 3 fotos en total❗)</label>
+                  <label>Subir una foto del local y una foto del taller (máximo 3 fotos)</label>
                   <input type="file" id="foto" accept="image/*" multiple>
             </div>
 
